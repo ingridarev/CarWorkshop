@@ -32,6 +32,23 @@ export function ViewCarWorkshop() {
       });
   }, [params.id]);
 
+  const deleteRepairman = (repairmanId) => {
+    fetch(`/api/v1/repairmans/${repairmanId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Remove the deleted repairman from the state
+          setRepairman((prevRepairmen) =>
+            prevRepairmen.filter((repairman) => repairman.id !== repairmanId)
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting repairman:", error);
+      });
+  };
+
   return (
     <div>
       <Container>
@@ -73,26 +90,39 @@ export function ViewCarWorkshop() {
                           disabled
                         />
                       </Card.Description>
+                      <Card.Description>
+                        <Button
+                          className="mt-2"
+                          style={{
+                            color: "black",
+                            backgroundColor: "transparent",
+                            border: "1px solid black",
+                          }}
+                          onClick={() => deleteRepairman(person.id)}
+                        >
+                          Ištrinti
+                        </Button>
+                      </Card.Description>
                     </Card.Content>
                   </Card>
                 </Grid.Column>
               ))}
             </Grid.Row>
             <Button
-                className="mt-2 "
-                style={{
-                  color: "black",
-                  backgroundColor: "transparent",
-                  border: "1px solid black",
-                }}
-                fluid
-                size="large"
-                as={NavLink}
-                exact
-                to={`/repairmans/create/${params.id}`}
-              >
-                Pridėti meistrą
-              </Button>
+              className="mt-2 "
+              style={{
+                color: "black",
+                backgroundColor: "transparent",
+                border: "1px solid black",
+              }}
+              fluid
+              size="large"
+              as={NavLink}
+              exact
+              to={`/repairmans/create/${params.id}`}
+            >
+              Pridėti meistrą
+            </Button>
           </Grid>
         </Container>
       </Container>
