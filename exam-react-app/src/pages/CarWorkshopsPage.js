@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Card, Container, Button } from "semantic-ui-react";
 import AuthContext from "../AuthContext";
-import "./menusPage.css";
+import "./carWorkshopsPage.css";
 
 export function CarWorkshopsPage() {
   const { appState, setAppState } = useContext(AuthContext);
