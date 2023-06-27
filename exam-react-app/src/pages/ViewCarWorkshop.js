@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Grid, Divider, Card, Rating, Container, Table } from "semantic-ui-react";
+import { useParams, NavLink } from "react-router-dom";
+import {
+  Grid,
+  Button,
+  Card,
+  Rating,
+  Container,
+  Table,
+} from "semantic-ui-react";
 import "./carWorkshopsPage.css";
 
 const JSON_HEADERS = {
@@ -44,13 +51,13 @@ export function ViewCarWorkshop() {
             </Table.Row>
           </Table.Body>
         </Table>
-
+        <h1 style={{ display: "grid", justifyContent: "center" }}>Meistrai</h1>
         <Container className="carWorkshops mt-5">
           <Grid columns={3} doubling stackable>
             <Grid.Row>
               {repairman.map((person) => (
                 <Grid.Column key={person.id}>
-                  <Card fluid className="mt-5 carWorkshops card">
+                  <Card fluid className="mt-1 carWorkshops card">
                     <Card.Content>
                       <Card.Header>
                         {person.name} {person.surname}
@@ -59,13 +66,33 @@ export function ViewCarWorkshop() {
                       <Card.Description>{person.city}</Card.Description>
                       <Card.Description>
                         Rating -
-                        <Rating icon="star" defaultRating={person.rating} maxRating={5} disabled />
+                        <Rating
+                          icon="star"
+                          defaultRating={person.rating}
+                          maxRating={5}
+                          disabled
+                        />
                       </Card.Description>
                     </Card.Content>
                   </Card>
                 </Grid.Column>
               ))}
             </Grid.Row>
+            <Button
+                className="mt-2 "
+                style={{
+                  color: "black",
+                  backgroundColor: "transparent",
+                  border: "1px solid black",
+                }}
+                fluid
+                size="large"
+                as={NavLink}
+                exact
+                to={`/repairmans/${params.id}`}
+              >
+                Pridėti meistrą
+              </Button>
           </Grid>
         </Container>
       </Container>

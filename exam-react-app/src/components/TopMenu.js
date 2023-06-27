@@ -22,13 +22,20 @@ export function TopMenu() {
   };
 
   return (
+    
     <Navbar bg="secondary" variant="light">
       <Container>
         <Nav className="d-flex">
-          <Link className="text-decoration-none me-auto mt-2" to={"/"}>
+        {appState.isAuthenticated && (
+          <Link className="text-decoration-none me-auto mt-2" to={"/carWorkshops"}>
             <Navbar.Brand href="#home">Automobilių servisai</Navbar.Brand>
           </Link>
-
+          )}
+          {!appState.isAuthenticated && (
+          <Link className="text-decoration-none me-auto mt-2" to={"/login"}>
+            <Navbar.Brand href="#home">Automobilių servisai</Navbar.Brand>
+          </Link>
+          )}
           {/* <Link className="text-decoration-none" to={"menus/"}>
             <Nav.Link href="#menu">Pasirinkti meniu</Nav.Link>
           </Link> */}
@@ -36,7 +43,6 @@ export function TopMenu() {
           {appState.isAuthenticated && (
             <Link className="text-decoration-none" to={"carWorkshops/create"}>
               <Nav.Link href="#create">
-                {" "}
                 Pridėti servisą
               </Nav.Link>
             </Link>

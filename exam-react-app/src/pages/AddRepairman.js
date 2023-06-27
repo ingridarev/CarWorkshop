@@ -10,22 +10,26 @@ const JSON_HEADERS = {
 export function AddRepairman() {
   const { appState } = useContext(AuthContext);
   const { id } = useParams();
-  const [title, setTitle] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [meals, setMeals] = useState([]);
-  const [menu, setMenu] = useState(id);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [workScope, setWorkScope] = useState("");
+  const [city, setCity] = useState("");
+  const [rating, setRating] = useState("");
 
   const listUrl = useHref(`/carWorkshops/${id}`);
   const [hide, setHide] = useState(false);
 
-  const createMeal = () => {
+  const createRepairman = () => {
     fetch(`/api/v1/repairmans/${id}`, {
       method: "POST",
       headers: JSON_HEADERS,
       body: JSON.stringify({
-        title,
-        quantity,
-        menu: id,
+        name,
+        surname,
+        workScope,
+        city,
+        rating,
+        carWorkshop: id,
       }),
     })
       .then(applyResult)
@@ -50,23 +54,48 @@ export function AddRepairman() {
         <Grid.Column width={6}>
           <Form>
             <Form.Field>
-              <label>Patiekalo pavadinimas</label>
+              <label>Vardas</label>
               <input
-                placeholder="Patiekalo pavadinimas"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Vardas"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </Form.Field>
             <Form.Field>
-              <label>Kiekis</label>
+              <label>Pavardė</label>
               <input
-                placeholder="Kiekis"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                placeholder="Pavardė"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Specializacija</label>
+              <input
+                placeholder="Specializacija"
+                value={workScope}
+                onChange={(e) => setWorkScope(e.target.value)}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Miestas</label>
+              <input
+                placeholder="Miestas"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
             </Form.Field>
 
-            <Button type="submit" basic style={{ color: 'black', backgroundColor: 'transparent', border: '1px solid black' }} onClick={createMeal}>
+            <Button
+              type="submit"
+              basic
+              style={{
+                color: "black",
+                backgroundColor: "transparent",
+                border: "1px solid black",
+              }}
+              onClick={createMeal}
+            >
               Sukurti
             </Button>
           </Form>
