@@ -10,7 +10,6 @@ import { LoginPage } from "./pages/LoginPage";
 import "semantic-ui-css/semantic.min.css";
 import { AddCarWorkshop } from "./pages/AddCarWorkshop";
 import { AddRepairman } from "./pages/AddRepairman";
-import { CarWorkshopsPage } from "./pages/CarWOrkshopsPage";
 
 function App() {
   var initState = {
