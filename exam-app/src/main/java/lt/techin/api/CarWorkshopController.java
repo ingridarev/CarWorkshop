@@ -5,9 +5,11 @@ import lt.techin.api.dto.CarWorkshopEntityDto;
 import lt.techin.api.dto.mapper.CarWorkshopMapper;
 import lt.techin.exception.CarWorkshopValidationException;
 import lt.techin.model.CarWorkshop;
+import lt.techin.model.Repairman;
 import lt.techin.service.CarWorkshopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -65,24 +67,43 @@ public class CarWorkshopController {
         }
     }
 
+//    @DeleteMapping("/{carWorkshopId}")
+//    public ResponseEntity<Void> deleteCarWorkshop(@PathVariable Long carWorkshopId) {
+//        logger.info("Attempt to delete carWorkshop by id: {}", carWorkshopId);
+//
+//        boolean deleted = carWorkshopService.deleteById(carWorkshopId);
+//        if (deleted) {
+//            return ResponseEntity.noContent().build();
+//
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
     @DeleteMapping("/{carWorkshopId}")
     public ResponseEntity<Void> deleteCarWorkshop(@PathVariable Long carWorkshopId) {
         logger.info("Attempt to delete carWorkshop by id: {}", carWorkshopId);
 
-        boolean deleted = carWorkshopService.deleteById(carWorkshopId);
+        boolean deleted = carWorkshopService.deleteCarWorkshopAndRepairmen(carWorkshopId);
         if (deleted) {
             return ResponseEntity.noContent().build();
-
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @PatchMapping("/{carWorkshopId}")
     public ResponseEntity<CarWorkshopDto> updateCarWorkshop(@PathVariable Long carWorkshopId, @RequestBody CarWorkshopDto carWorkshopDto) {
         var updatedCarWorkshop = carWorkshopService.update(carWorkshopId, toCarWorkshop(carWorkshopDto));
 
         return ok(toCarWorkshopDto(updatedCarWorkshop));
+    }
+
+    @GetMapping("/{carWorkshopId}/repairman")
+    public ResponseEntity<List<Repairman>> getRepairmenByCarWorkshopId(@PathVariable Long carWorkshopId) {
+        List<Repairman> repairmen = carWorkshopService.getRepairmenByCarWorkshopId(carWorkshopId);
+        return new ResponseEntity<>(repairmen, HttpStatus.OK);
     }
 
 

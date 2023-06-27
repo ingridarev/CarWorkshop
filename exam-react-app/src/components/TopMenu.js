@@ -34,10 +34,10 @@ export function TopMenu() {
           </Link> */}
 
           {appState.isAuthenticated && (
-            <Link className="text-decoration-none" to={"menus/create"}>
+            <Link className="text-decoration-none" to={"carWorkshops/create"}>
               <Nav.Link href="#create">
                 {" "}
-                Pridėti meniu
+                Pridėti servisą
               </Nav.Link>
             </Link>
           )}
@@ -48,7 +48,7 @@ export function TopMenu() {
           )}
 
           {appState.isAuthenticated && (
-            <Link className="text-decoration-none" to={"menus/"}>
+            <Link className="text-decoration-none" to={"carWorkshops/"}>
               <Nav.Link href="#logout" onClick={logoutHandler}>
                 Atsijungti
               </Nav.Link>

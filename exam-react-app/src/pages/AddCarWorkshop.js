@@ -10,21 +10,21 @@ const JSON_HEADERS = {
 export function AddCarWorkshop() {
   const { appState } = useContext(AuthContext);
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [meals, setMeals] = useState([]);
-  const [menus, setMenus] = useState([]);
+  const [address, setAddress] = useState("");
+  const [manager, setManager] = useState([]);
+  const [carWorkshop, setCarWorkshop] = useState([]);
 
-  const listUrl = useHref("/menus");
+  const listUrl = useHref("/carWorkshops");
   const [hide, setHide] = useState(false);
 
-  const createMenu = () => {
+  const createCarWorkshop = () => {
     fetch("/api/v1/carWorkshops", {
       method: "POST",
       headers: JSON_HEADERS,
       body: JSON.stringify({
         title,
-        description,
-        meals,
+        address,
+        manager,
       }),
     })
       .then(applyResult)
@@ -49,22 +49,30 @@ export function AddCarWorkshop() {
         <Grid.Column width={6}>
           <Form>
             <Form.Field>
-              <label>Meniu pavadinimas</label>
+              <label>Serviso pavadinimas:</label>
               <input
-                placeholder="Meniu pavadinimas"
+                placeholder="Serviso pavadinimas"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Field>
             <Form.Field>
-              <label>Aprašymas</label>
-              <TextArea
-                placeholder="Aprašymas"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+              <label>Adresas:</label>
+              <input
+                placeholder="Adresas"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </Form.Field>
-            <Button type="submit" primary onClick={createMenu}>
+            <Form.Field>
+              <label>Vadovas:</label>
+              <input
+                placeholder="Vadovas"
+                value={manager}
+                onChange={(e) => setManager(e.target.value)}
+              />
+            </Form.Field>
+            <Button type="submit" primary style={{ color: 'black', backgroundColor: 'transparent', border: '1px solid black' }} onClick={createCarWorkshop}>
               Sukurti
             </Button>
           </Form>

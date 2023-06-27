@@ -66,7 +66,7 @@ export function AddRepairman() {
               />
             </Form.Field>
 
-            <Button type="submit" primary onClick={createMeal}>
+            <Button type="submit" basic style={{ color: 'black', backgroundColor: 'transparent', border: '1px solid black' }} onClick={createMeal}>
               Sukurti
             </Button>
           </Form>

@@ -3,6 +3,7 @@ package lt.techin.service;
 import lt.techin.dao.CarWorkshopRepository;
 import lt.techin.dao.RepairmanRepository;
 import lt.techin.exception.CarWorkshopValidationException;
+import lt.techin.model.CarWorkshop;
 import lt.techin.model.Repairman;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,12 @@ public class RepairmanService {
         existingRepairman.setCarWorkshop(repairman.getCarWorkshop());
 
         return repairmanRepository.save(existingRepairman);
+    }
+
+    public List<Repairman> getRepairmanByCarWorkshopId(Long carWorkshopId) {
+        CarWorkshop carWorkshop = new CarWorkshop();
+        carWorkshop.setId(carWorkshopId);
+
+        return repairmanRepository.findByCarWorkshop(carWorkshop);
     }
 }

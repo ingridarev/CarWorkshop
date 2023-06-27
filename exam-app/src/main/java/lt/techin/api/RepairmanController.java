@@ -1,10 +1,12 @@
 package lt.techin.api;
 
 import lt.techin.api.dto.RepairmanDto;
+import lt.techin.model.CarWorkshop;
 import lt.techin.model.Repairman;
 import lt.techin.service.RepairmanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -72,6 +74,12 @@ public class RepairmanController {
         var updatedRepairman = repairmanService.update(repairmanId, toRepairman(repairmanDto));
 
         return ok(toRepairmanDto(updatedRepairman));
+    }
+
+    @GetMapping("/{carWorkshopId}")
+    public ResponseEntity<List<Repairman>> getRepairmanByCarWorkshopId(@PathVariable Long carWorkshopId) {
+        List<Repairman> repairmen = repairmanService.getRepairmanByCarWorkshopId(carWorkshopId);
+        return new ResponseEntity<>(repairmen, HttpStatus.OK);
     }
 
 

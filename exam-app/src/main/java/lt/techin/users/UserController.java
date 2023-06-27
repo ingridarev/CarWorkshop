@@ -1,5 +1,6 @@
 package lt.techin.users;
 
+import lt.techin.api.dto.CarWorkshopDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +20,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+//    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+//@PostMapping(path="/user/create", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+//public ResponseEntity<CarWorkshopDto> createUser(String userName, String password) {
+////    @RequestMapping(path="/user/create",method =  RequestMethod.POST)
+////    public @ResponseBody ResponseEntity<Users> createUser(String userName, String password) {
+//
+//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//
+//        if(!userService.usersUserNameIsUnique(userName))
+//            return new ResponseEntity<Users>("Naudotojas egzistuoja", HttpStatus.BAD_REQUEST);
+//
+//        userService.createUser(userName, password);
+//
+//        return new ResponseEntity<Users>("Sukurtas naudotojas",HttpStatus.CREATED);
+//    }
     @RequestMapping(path="/user/create",method =  RequestMethod.POST)
     public @ResponseBody ResponseEntity<String> createUser(String userName, String password) {
 

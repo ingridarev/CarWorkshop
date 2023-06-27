@@ -1,5 +1,5 @@
 import React, { useState, useContext, history } from "react";
-import { useHref, useNavigate } from "react-router-dom";
+import { useHref, useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../AuthContext";
 import {
   Button,
@@ -92,14 +92,14 @@ export function LoginPage() {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-                   <Form size="large">
+          <Form size="large">
             <Segment stacked>
               <Form.Input
                 fluid
                 icon="user"
                 iconPosition="left"
                 placeholder="Vartotojo vardas"
-                value={username} 
+                value={username}
                 onChange={handleUsernameChange}
               />
               <Form.Input
@@ -108,14 +108,32 @@ export function LoginPage() {
                 iconPosition="left"
                 placeholder="Slaptažodis"
                 type="password"
-                value={password} 
+                value={password}
                 onChange={handlePasswordChange}
               />
-              <Button text-color="white" color="black" fluid size="large" onClick={handleSubmit}>
+              <Button
+                text-color="white"
+                color="black"
+                fluid
+                size="large"
+                onClick={handleSubmit}
+              >
                 Prisijunkite
               </Button>
-              <Button className="mt-2 " style={{ color: 'black', backgroundColor: 'transparent', border: '1px solid black' }} fluid size="large" onClick={handleSubmit}>
-                Sukurti profilį
+              <Button
+                className="mt-2 "
+                style={{
+                  color: "black",
+                  backgroundColor: "transparent",
+                  border: "1px solid black",
+                }}
+                fluid
+                size="large"
+                as={NavLink}
+                exact
+                to={"/user/create"}
+              >
+                Sukurti vartotoją
               </Button>
             </Segment>
           </Form>

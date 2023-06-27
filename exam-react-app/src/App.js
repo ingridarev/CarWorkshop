@@ -5,11 +5,13 @@ import { TopMenu } from "./components/TopMenu";
 import { Container } from "semantic-ui-react";
 import AuthContext from "./AuthContext";
 import Authentication from "./Authentication";
-import { ViewMenuMeals } from "./pages/ViewMenuMeals";
 import { LoginPage } from "./pages/LoginPage";
 import "semantic-ui-css/semantic.min.css";
 import { AddCarWorkshop } from "./pages/AddCarWorkshop";
 import { AddRepairman } from "./pages/AddRepairman";
+import { CarWorkshopPage } from "./pages/CarWorkshopPage";
+import { CreateUserPage } from "./pages/CreateUserPage";
+import { ViewCarWorkshop } from "./pages/ViewCarWorkshop";
 
 function App() {
   var initState = {
@@ -59,11 +61,12 @@ function App() {
             <TopMenu />
             <div className="container">
               <Routes>
-                <Route path="/carWorkshops/" element={<CarWorkshopsPage />} />
-                <Route path="/menus/:id" element={<ViewMenuMeals />} />
+                <Route path="/carWorkshops/" element={<CarWorkshopPage />} />
                 <Route path="/login/" element={<LoginPage />} />
                 <Route path="/carWorkshops/create" element={<AddCarWorkshop />} />
                 <Route path="/repairmans/create/:id" element={<AddRepairman />} />
+                <Route path="/user/create" element={<CreateUserPage />} />
+                <Route path="/carWorkshops/:id" element={<ViewCarWorkshop/>} />
               </Routes>
             </div>
           </HashRouter>
