@@ -89,7 +89,7 @@ export function ViewCarWorkshop() {
                 size="large"
                 as={NavLink}
                 exact
-                to={`/repairmans/${params.id}`}
+                to={`/repairmans/create/${params.id}`}
               >
                 Pridėti meistrą
               </Button>

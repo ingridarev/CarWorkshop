@@ -85,6 +85,14 @@ export function AddRepairman() {
                 onChange={(e) => setCity(e.target.value)}
               />
             </Form.Field>
+            <Form.Field>
+              <label>Reitingas</label>
+              <input
+                placeholder="Reitingas"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              />
+            </Form.Field>
 
             <Button
               type="submit"
@@ -94,7 +102,7 @@ export function AddRepairman() {
                 backgroundColor: "transparent",
                 border: "1px solid black",
               }}
-              onClick={createMeal}
+              onClick={createRepairman}
             >
               Sukurti
             </Button>
