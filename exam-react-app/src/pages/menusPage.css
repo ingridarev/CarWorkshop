@@ -1,0 +1,11 @@
+.menus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: black;
+}
+
+.menus .card {
+    width: 300px; 
+    margin: 10px; 
+  }
